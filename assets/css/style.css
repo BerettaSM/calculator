@@ -88,7 +88,7 @@ h6 {
     border: 2px solid var(--offset-black);
     width: 25%;
     height: 8px;
-    top: -9.5px;
+    top: -9.2px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
