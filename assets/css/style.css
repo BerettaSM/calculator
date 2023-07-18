@@ -1,0 +1,179 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/*
+*  CSS Reset by Josh Comeau.
+*
+*  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+:root {
+    --main-color: #080808;
+    --lighter-black: #101010;
+    --offset-black: rgb(41, 41, 41);
+    --frame-outline-color: rgb(59, 59, 59);
+    --side-button-color: rgb(246,153, 6);
+    --button-color: rgb(49, 49,49);
+    --top-button-color: rgb(160, 160,160);
+    --camera-reflex-color: rgb(95, 95, 252);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+.frame {
+    background-color: slategray;
+    border-radius: 50px;
+    border: 2px solid silver;
+    outline: 2px solid var(--frame-outline-color);
+    padding: 2px;
+}
+
+.calculator {
+    background-color: var(--main-color);
+    border: .6rem solid black;
+    border-radius: 50px;
+    color: white;
+    padding: 1.2rem;
+    position: relative;
+}
+
+.top-component {
+    background-color: black;
+    position: absolute;
+    border-radius: 0 0 15px 15px;
+    border: 1px solid var(--offset-black);
+    border-top-color: inherit;
+    width: 50%;
+    height: 25px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.camera {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--lighter-black);
+    height: 16px;
+    width: 16px;
+    left: 10px;
+}
+
+.camera::before {
+    content: '';
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    z-index: 1;
+}
+
+.camera::after {
+    content: '';
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--camera-reflex-color) 8%, transparent, var(--camera-reflex-color) 90%);
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    z-index: 2;
+}
+
+.visor {
+
+}
+
+.display {
+    display: flex;
+    font-size: 4rem;
+    height: 200px;
+    padding: 0 10px;
+    text-align: right;
+}
+
+.result {
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.buttons {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.buttons button {
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 50%;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 8px 10px;
+}
+
+button.top {
+    background-color: var(--top-button-color);
+    color: var(--main-color);
+}
+
+button.side {
+    background-color: var(--side-button-color);
+}
+
+button.zero {
+    border-radius: 50px;
+    grid-column: span 2;
+    padding-left: 20px;
+    text-align: left;
+}
