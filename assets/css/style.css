@@ -8,7 +8,7 @@
 */
 
 :root {
-    --main-color: #080808;
+    --main-color: #060606;
     --lighter-black: #101010;
     --offset-black: rgb(41, 41, 41);
     --frame-outline-color: rgb(59, 59, 59);
@@ -77,8 +77,21 @@ h6 {
     border: .6rem solid black;
     border-radius: 50px;
     color: white;
-    padding: 1.2rem;
+    padding: 1.2rem 1.2rem 3rem;
     position: relative;
+}
+
+.ear-piece {
+    background-color: var(--lighter-black);
+    position: absolute;
+    border-radius: 0 0 15px 15px;
+    border: 2px solid var(--offset-black);
+    width: 25%;
+    height: 8px;
+    top: -9.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
 }
 
 .top-component {
@@ -92,6 +105,22 @@ h6 {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.time, .hud {
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.time {
+    left: -30%;
+    top: 8px;
+}
+
+.hud {
+    right: -38%;
+    top: 5px;
 }
 
 .camera {
@@ -127,14 +156,10 @@ h6 {
     z-index: 2;
 }
 
-.visor {
-
-}
-
 .display {
     display: flex;
     font-size: 4rem;
-    height: 200px;
+    height: 230px;
     padding: 0 10px;
     text-align: right;
 }
@@ -176,4 +201,15 @@ button.zero {
     grid-column: span 2;
     padding-left: 20px;
     text-align: left;
+}
+
+.bottom-line {
+    position: absolute;
+    height: 5px;
+    border-radius: 10px;
+    width: 35%;
+    background-color: white;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
 }

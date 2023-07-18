@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/css/style.css">
     <script src="/assets/scripts/app.js" type="module" defer></script>
 </head>
@@ -15,12 +18,16 @@
         <div class="calculator">
             <div class="ear-piece"></div>
             <div class="top-component">
+                <div class="time">9:41</div>
                 <div class="camera"></div>
-            </div>
-            <div class="visor">
-                <div class="display">
-                    <div class="result">0</div>
+                <div class="hud">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
                 </div>
+            </div>
+            <div class="display">
+                <div class="result">0</div>
             </div>
             <div class="buttons">
                 <button class="top">AC</button>
@@ -43,6 +50,7 @@
                 <button>.</button>
                 <button class="side">=</button>
             </div>
+            <div class="bottom-line"></div>
         </div>
     </div>
 
