@@ -44,44 +44,81 @@ class Calculator {
 export default class StatefulCalculator extends Calculator {
     constructor() {
         super();
-        this.current = '0';
-        this.previous = '';
-        this.operation = '';
+        this._current = '0';
+        this._previous = '';
+        this._operation = '';
+    }
+
+    get current() {
+        return this._current;
+    }
+
+    set current(value) {
+        if(value.toString().length > 9)
+            this._current = (+value).toExponential(2) 
+        else
+            this._current = value
+    }
+
+    get previous() {
+        return this._previous;
+    }
+
+    set previous(value) {
+        if(value[value.length - 1] === '.')
+            value = value.slice(0, -1)
+        this._previous = value;
+    }
+
+    get operation() {
+        return this._operation;
+    }
+
+    set operation(value) {
+        this._operation = value;
     }
 
     clear() {
-        this.current = '0';
-        this.previous = '';
-        this.operation = '';
+        this._current = '0';
+        this._previous = '';
+        this._operation = '';
+    }
+
+    calculateResult() {
+        const n1 = +this.previous;
+        const n2 = +this.current;
+        const symbol = this.operation
+        const result = this.operate(n1, symbol, n2)
+        this.clear()
+        this.current = result
     }
 
     compute(key) {
         if (isFinite(key)) {
             // A number
-            this.current === '0'
+            this.current == '0'
                 ? (this.current = key)
                 : (this.current += key);
-        } else if (key === '=') {
-            const n1 = +this.previous;
-            const n2 = +this.current;
-            const symbol = this.operation
-            const result = this.operate(n1, symbol, n2)
-            this.clear()
-            this.current = result
+        } else if (key === '=' && !!this.operation) {
+            this.calculateResult()
         } else if (key === 'AC') {
             this.clear();
         } else if(key === '+/-') {
-            console.log('invert signal')
+            this.current = (+this.current * -1).toString()
         } else if (key in this.operations) {
-            if(this.current !== '0')
+            if(this.current !== '0' && !!this.operation) {
+                this.calculateResult()
+                const result = this.current
+                this.clear()
+                this.previous = result
+            } else if(this.current !== '0') {
                 this.previous = this.current
+            }
             this.operation = key
             this.current = '0'
         } else if (key === '.') {
             if(!this.current.includes('.'))
                 this.current += '.';
-        } else {
-            throw Error('Unknown key');
         }
     }
 }

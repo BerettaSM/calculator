@@ -12,10 +12,12 @@
     --lighter-black: #101010;
     --offset-black: rgb(41, 41, 41);
     --frame-outline-color: rgb(59, 59, 59);
-    --side-button-color: rgb(246,153, 6);
-    --button-color: rgb(49, 49,49);
-    --top-button-color: rgb(160, 160,160);
+    --side-button-color: rgb(244, 153, 6);
+    --button-color: rgb(49, 49, 49);
+    --top-button-color: rgb(160, 160, 160);
     --camera-reflex-color: rgb(95, 95, 252);
+    --gradient-color-1: #464191;
+    --gradient-color-2: #070522;
 }
 
 *,
@@ -36,6 +38,12 @@ body {
     justify-content: center;
     height: 100vh;
     font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(
+        135deg,
+        var(--gradient-color-2),
+        var(--gradient-color-1),
+        var(--gradient-color-2) 
+    );
 }
 
 img,
@@ -70,11 +78,12 @@ h6 {
     border: 2px solid silver;
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
+    min-width: 340px;
 }
 
 .calculator {
     background-color: var(--main-color);
-    border: .6rem solid black;
+    border: 0.6rem solid black;
     border-radius: 50px;
     color: white;
     padding: 1.2rem 1.2rem 3rem;
@@ -107,7 +116,8 @@ h6 {
     transform: translateX(-50%);
 }
 
-.time, .hud {
+.time,
+.hud {
     position: absolute;
     font-size: 0.8rem;
     font-weight: bold;
@@ -149,7 +159,12 @@ h6 {
     border-radius: 50%;
     width: 10px;
     height: 10px;
-    background: linear-gradient(135deg, var(--camera-reflex-color) 8%, transparent, var(--camera-reflex-color) 90%);
+    background: linear-gradient(
+        135deg,
+        var(--camera-reflex-color) 8%,
+        transparent,
+        var(--camera-reflex-color) 90%
+    );
     position: absolute;
     left: 3px;
     top: 3px;
@@ -164,13 +179,16 @@ h6 {
     font-size: 3rem;
     height: 230px;
     padding: 0 10px;
+    max-width: 17.1875rem;
+    overflow: hidden;
 }
 
 .current {
     flex-grow: 0;
 }
 
-.previous, .operation {
+.previous,
+.operation {
     font-size: 1.5rem;
 }
 
@@ -190,6 +208,7 @@ h6 {
     font-size: 1.8rem;
     font-weight: 500;
     padding: 8px 10px;
+    min-width: 100%;
 }
 
 button.top {
