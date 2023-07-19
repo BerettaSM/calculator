@@ -158,15 +158,20 @@ h6 {
 
 .display {
     display: flex;
-    font-size: 4rem;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 3rem;
     height: 230px;
     padding: 0 10px;
-    text-align: right;
 }
 
-.result {
-    align-self: flex-end;
-    margin-left: auto;
+.current {
+    flex-grow: 0;
+}
+
+.previous, .operation {
+    font-size: 1.5rem;
 }
 
 .buttons {
