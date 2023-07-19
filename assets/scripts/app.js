@@ -26,6 +26,20 @@ function updateDisplay() {
     operation.textContent = calculator.operation
 }
 
+const time = document.querySelector('.time');
+
+updateTime();
+
+function updateTime() {
+    const now = new Date();
+    const formattedTime = now.toLocaleTimeString('en-US', {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+    time.textContent = formattedTime;
+    setTimeout(updateTime, 1000);
+}
+
 function triggerMeltdown() {
     console.log('meltdown triggered')
     buttons.removeEventListener('click', onClick)
