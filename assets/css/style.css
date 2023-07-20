@@ -79,15 +79,23 @@ h6 {
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
     min-width: 340px;
-    animation: frame-popin 1.5s 1;
+    animation: frame-popin 1.5s 1 ease-out;
+    opacity: 1;
+    transition: transform .1s ease;
 }
 
 @keyframes frame-popin {
-    from {
+    0% {
+        background-color: transparent;
         transform: translateY(-125px);
         opacity: 0;
     }
-    to {
+    90% {
+        background-color: transparent;
+        opacity: .3;
+    }
+    100% {
+        background-color: slategray;
         transform: translateY(0);
         opacity: 1;
     }
@@ -100,6 +108,23 @@ h6 {
     color: white;
     padding: 1.2rem 1.2rem 3rem;
     position: relative;
+    opacity: 0;
+    animation: calculator-popin 1.5s 1 0.75s ease-in forwards;
+    transition: transform .1s ease;
+}
+
+@keyframes calculator-popin {
+    0% {
+        transform: translateX(-125px);
+        opacity: 0;
+    }
+    90% {
+        opacity: .7;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .ear-piece {

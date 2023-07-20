@@ -1,4 +1,4 @@
-class Calculator {
+export class Calculator {
     operations = {
         '+': this.add,
         '-': this.subtract,
@@ -36,7 +36,7 @@ class Calculator {
     }
 }
 
-export default class StatefulCalculator extends Calculator {
+export class StatefulCalculator extends Calculator {
     constructor() {
         super();
         this._current = '0';
@@ -49,10 +49,9 @@ export default class StatefulCalculator extends Calculator {
     }
 
     set current(value) {
-        if(value.toString().length > 9)
-            this._current = (+value).toExponential(2) 
-        else
-            this._current = value
+        if (value.toString().length > 9)
+            this._current = (+value).toExponential(2);
+        else this._current = value;
     }
 
     get previous() {
@@ -60,8 +59,7 @@ export default class StatefulCalculator extends Calculator {
     }
 
     set previous(value) {
-        if(value[value.length - 1] === '.')
-            value = value.slice(0, -1)
+        if (value[value.length - 1] === '.') value = value.slice(0, -1);
         this._previous = value;
     }
 
@@ -82,47 +80,48 @@ export default class StatefulCalculator extends Calculator {
     calculateResult() {
         const n1 = +this.previous;
         const n2 = +this.current;
-        const symbol = this.operation
-        const result = this.operate(n1, symbol, n2)
-        this.clear()
-        this.current = result.toString()
+        const symbol = this.operation;
+        const result = this.operate(n1, symbol, n2);
+        this.clear();
+        this.current = result.toString();
     }
 
     erase() {
-        if(this.current !== '0') {
-            this.current = this.current.slice(0, -1)
+        if (this.current !== '0') {
+            this.current = this.current.slice(0, -1);
         }
-        if(!this.current) this.current = '0'
+        if (!this.current) this.current = '0';
     }
 
     compute(key) {
         if (isFinite(key)) {
-            this.current == '0'
-                ? (this.current = key)
-                : (this.current += key);
+            this.current == '0' ? (this.current = key) : (this.current += key);
         } else if (key === '=' && !!this.operation) {
-            this.calculateResult()
+            this.calculateResult();
         } else if (key === 'AC') {
             this.clear();
-        } else if(key === 'C') {
-            this.erase()
+        } else if (key === 'C') {
+            this.erase();
         } else if (key in this.operations) {
-            if(this.previous && this.operation && this.current == '0') {
-                this.operation = key
-            } else if(!this.previous) {
-                this.previous = this.current
-                this.operation = key
-                this.current = '0'
+            if (this.previous && this.operation && this.current == '0') {
+                this.operation = key;
+            } else if (!this.previous) {
+                this.previous = this.current;
+                this.operation = key;
+                this.current = '0';
             } else {
-                this.calculateResult()
-                const result = this.current
-                this.clear()
-                this.operation = key
-                this.previous = result
+                this.calculateResult();
+                const result = this.current;
+                this.clear();
+                this.operation = key;
+                this.previous = result;
             }
         } else if (key === '.') {
-            if(!this.current.includes('.'))
-                this.current += '.';
+            if (!this.current.includes('.')) this.current += '.';
         }
     }
 }
+
+const calculator = new StatefulCalculator();
+
+export default calculator;
