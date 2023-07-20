@@ -4,7 +4,6 @@ class Calculator {
         '-': this.subtract,
         '×': this.multiply,
         '÷': this.divide,
-        '+/-': this.invertSignal,
         '%': this.percent,
     };
 
@@ -22,10 +21,6 @@ class Calculator {
 
     divide(n1, n2) {
         return n1 / n2;
-    }
-
-    invertSignal(n) {
-        return n * -1;
     }
 
     percent(n1, n2) {
@@ -93,6 +88,13 @@ export default class StatefulCalculator extends Calculator {
         this.current = result.toString()
     }
 
+    erase() {
+        if(this.current !== '0') {
+            this.current = this.current.slice(0, -1)
+        }
+        if(!this.current) this.current = '0'
+    }
+
     compute(key) {
         if (isFinite(key)) {
             this.current == '0'
@@ -102,8 +104,8 @@ export default class StatefulCalculator extends Calculator {
             this.calculateResult()
         } else if (key === 'AC') {
             this.clear();
-        } else if(key === '+/-') {
-            this.current = (+this.current * -1).toString()
+        } else if(key === 'C') {
+            this.erase()
         } else if (key in this.operations) {
             if(this.previous && this.operation && this.current == '0') {
                 this.operation = key
