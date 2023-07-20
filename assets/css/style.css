@@ -209,7 +209,20 @@ h6 {
     font-weight: 500;
     padding: 8px 10px;
     min-width: 100%;
+    position: relative;
+    overflow: hidden;
 }
+
+.buttons button:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+    z-index: 2;
+}   
 
 button.top {
     background-color: var(--top-button-color);

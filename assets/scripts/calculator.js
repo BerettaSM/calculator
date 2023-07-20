@@ -90,12 +90,11 @@ export default class StatefulCalculator extends Calculator {
         const symbol = this.operation
         const result = this.operate(n1, symbol, n2)
         this.clear()
-        this.current = result
+        this.current = result.toString()
     }
 
     compute(key) {
         if (isFinite(key)) {
-            // A number
             this.current == '0'
                 ? (this.current = key)
                 : (this.current += key);
@@ -106,16 +105,19 @@ export default class StatefulCalculator extends Calculator {
         } else if(key === '+/-') {
             this.current = (+this.current * -1).toString()
         } else if (key in this.operations) {
-            if(this.current !== '0' && !!this.operation) {
+            if(this.previous && this.operation && this.current == '0') {
+                this.operation = key
+            } else if(!this.previous) {
+                this.previous = this.current
+                this.operation = key
+                this.current = '0'
+            } else {
                 this.calculateResult()
                 const result = this.current
                 this.clear()
+                this.operation = key
                 this.previous = result
-            } else if(this.current !== '0') {
-                this.previous = this.current
             }
-            this.operation = key
-            this.current = '0'
         } else if (key === '.') {
             if(!this.current.includes('.'))
                 this.current += '.';
