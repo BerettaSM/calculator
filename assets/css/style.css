@@ -79,6 +79,18 @@ h6 {
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
     min-width: 340px;
+    animation: frame-popin 1.5s 1;
+}
+
+@keyframes frame-popin {
+    from {
+        transform: translateY(-125px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .calculator {
