@@ -1,8 +1,11 @@
 import Calculator from "./calculator.js";
+import createButtons from "./buttons.js";
 
-const buttons = document.querySelector('.buttons')
 
-buttons.addEventListener('click', onClick)
+const buttonsContainer = document.querySelector('.buttons')
+createButtons(buttonsContainer)
+
+buttonsContainer.addEventListener('click', onClick)
 
 const calculator = new Calculator()
 
@@ -10,6 +13,7 @@ function onClick(event) {
     if(event.target.tagName !== 'BUTTON') return
     const { textContent: value } = event.target
     if(calculator.current === '0' && calculator.operation === '÷' && value === '=') {
+        // 'Delete' code for meltdown
         return triggerMeltdown()
     }
     calculator.compute(value)
