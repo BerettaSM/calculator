@@ -3,6 +3,7 @@ export const current = document.querySelector('.current');
 export const previous = document.querySelector('.previous');
 export const operation = document.querySelector('.operation');
 export const frame = document.querySelector('.frame');
+export const display = document.querySelector('.display');
 export const clock = document.querySelector('.time');
 
 export const xCenter = document.documentElement.clientWidth / 2;

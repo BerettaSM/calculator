@@ -7,6 +7,7 @@ import {
     previous,
     operation,
     frame,
+    display,
     xCenter,
     yCenter,
 } from './constants.js';
@@ -31,8 +32,7 @@ export function processInput(input) {
         calculator.operation === '÷' &&
         input === '='
     ) {
-        alert('Meltdown triggered');
-        return triggerMeltdown();
+        return triggerVanish();
     }
     calculator.compute(input);
     updateDisplay();
@@ -51,7 +51,12 @@ export function calculateFramePosition(event) {
     frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 }
 
-function triggerMeltdown() {
+function triggerVanish() {
+    display.textContent = 'WHAT HAVE YOU DONE?!'
     buttons.removeEventListener('click', onClick);
     window.removeEventListener('mousemove', calculateFramePosition);
+    frame.addEventListener('animationend', () => frame.remove());
+    setTimeout(() => {
+        frame.style.animation = `vanish 0.7s 1 ease-in-out forwards`;
+    }, 1500);
 }

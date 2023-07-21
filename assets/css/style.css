@@ -80,9 +80,9 @@ h6 {
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
     min-width: 340px;
-    animation: frame-popin 0.75s 1 ease-in;
     opacity: 1;
     transition: transform .15s ease;
+    animation: frame-popin 0.75s 1 ease-in;
 }
 
 @keyframes frame-popin {
@@ -95,6 +95,16 @@ h6 {
         background-color: slategray;
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@keyframes vanish {
+    0% {
+        transform: skew(0) rotate(0) scale(1);
+    }
+    100% {
+        transform: skew(50deg) rotate(1080deg) scale(0);
+        opacity: 0;
     }
 }
 
@@ -117,6 +127,20 @@ h6 {
     }
     100% {
         transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.calculator > * {
+    opacity: 0;
+    animation: component-popin 0.75s 1 1.5s ease-in forwards;
+}
+
+@keyframes component-popin {
+    from {
+        opacity: 0;
+    }
+    to {
         opacity: 1;
     }
 }
@@ -212,6 +236,7 @@ h6 {
     padding: 0 10px;
     max-width: 17.1875rem;
     overflow: hidden;
+    text-align: center;
 }
 
 .current {
