@@ -1,4 +1,4 @@
-const clock = document.querySelector('.time');
+import { clock, xCenter, yCenter, greatestOffset } from './constants.js';
 
 function scale(number, inMin, inMax, outMin, outMax) {
     return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
@@ -9,7 +9,7 @@ export function mapMouseXOffset(pos) {
     const result = scale(
         Math.abs(pos),
         0,
-        document.documentElement.clientWidth / 2,
+        xCenter,
         0,
         15
     );
@@ -21,7 +21,7 @@ export function mapMouseYOffset(pos) {
     const result = scale(
         Math.abs(pos),
         0,
-        document.documentElement.clientHeight / 2,
+        yCenter,
         0,
         15
     );
@@ -36,4 +36,15 @@ export function updateClock() {
     });
     clock.textContent = formattedTime;
     setTimeout(updateClock, 1000);
+}
+
+export function randomNumber(min,  max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+export function randomTranslate() {
+    const isNegativeTranslate = randomNumber(0, 1) === 0;
+    let translateValue = randomNumber(greatestOffset + 50, greatestOffset + 200);
+    translateValue = isNegativeTranslate ? translateValue * -1 : translateValue;
+    return `${translateValue}px`;
 }

@@ -1,10 +1,15 @@
 import calculator from './calculator.js';
 import { mapMouseXOffset, mapMouseYOffset } from './utils.js';
 
-const current = document.querySelector('.current');
-const previous = document.querySelector('.previous');
-const operation = document.querySelector('.operation');
-const frame = document.querySelector('.frame');
+import {
+    buttons,
+    current,
+    previous,
+    operation,
+    frame,
+    xCenter,
+    yCenter,
+} from './constants.js';
 
 export function onKeyDown(event) {
     const { code } = event;
@@ -26,9 +31,8 @@ export function processInput(input) {
         calculator.operation === '÷' &&
         input === '='
     ) {
-        // 'Delete' code for meltdown
-        // return triggerMeltdown()
-        console.log('trigger meltdown here');
+        alert('Meltdown triggered');
+        return triggerMeltdown();
     }
     calculator.compute(input);
     updateDisplay();
@@ -40,9 +44,6 @@ function updateDisplay() {
     operation.textContent = calculator.operation;
 }
 
-const xCenter = document.documentElement.clientWidth / 2;
-const yCenter = document.documentElement.clientHeight / 2;
-
 export function calculateFramePosition(event) {
     const { clientX, clientY } = event;
     const offsetX = mapMouseXOffset(xCenter - clientX);
@@ -51,6 +52,6 @@ export function calculateFramePosition(event) {
 }
 
 function triggerMeltdown() {
-    console.log('meltdown triggered');
-    buttonsContainer.removeEventListener('click', onClick);
+    buttons.removeEventListener('click', onClick);
+    window.removeEventListener('mousemove', calculateFramePosition);
 }

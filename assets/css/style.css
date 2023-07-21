@@ -44,6 +44,7 @@ body {
         var(--gradient-color-1),
         var(--gradient-color-2) 
     );
+    overflow: hidden;
 }
 
 img,
@@ -79,9 +80,9 @@ h6 {
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
     min-width: 340px;
-    animation: frame-popin 1.5s 1 ease-out;
+    animation: frame-popin 0.75s 1 ease-in;
     opacity: 1;
-    transition: transform .1s ease;
+    transition: transform .15s ease;
 }
 
 @keyframes frame-popin {
@@ -89,10 +90,6 @@ h6 {
         background-color: transparent;
         transform: translateY(-125px);
         opacity: 0;
-    }
-    90% {
-        background-color: transparent;
-        opacity: .3;
     }
     100% {
         background-color: slategray;
@@ -109,17 +106,14 @@ h6 {
     padding: 1.2rem 1.2rem 3rem;
     position: relative;
     opacity: 0;
-    animation: calculator-popin 1.5s 1 0.75s ease-in forwards;
-    transition: transform .1s ease;
+    animation: calculator-popin 0.75s 1 0.75s ease-in forwards;
+    transition: transform .15s ease;
 }
 
 @keyframes calculator-popin {
     0% {
         transform: translateX(-125px);
         opacity: 0;
-    }
-    90% {
-        opacity: .7;
     }
     100% {
         transform: translateX(0);
@@ -237,7 +231,7 @@ h6 {
 
 .buttons button {
     background-color: var(--button-color);
-    border: 2px solid transparent;
+    border: 2px solid var(--button-color);
     border-radius: 50%;
     color: inherit;
     cursor: pointer;
@@ -249,6 +243,22 @@ h6 {
     position: relative;
     overflow: hidden;
     transition: border-color .3s ease;
+    opacity: 0;
+    animation: button-slide-in 1.2s 1 1.5s ease-in-out forwards;
+}
+
+@keyframes button-slide-in {
+    0% {
+        transform: translate(var(--rnd-tns-x), var(--rnd-tns-y));
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0,0);
+        opacity: 1;
+    }
 }
 
 .buttons button:hover::after {
@@ -258,6 +268,7 @@ h6 {
     left: 0;
     height: 100%;
     width: 100%;
+    transform: scale(1.1);
     background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
     z-index: 2;
 }

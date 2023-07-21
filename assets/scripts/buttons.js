@@ -1,3 +1,5 @@
+import { randomTranslate } from './utils.js';
+
 const buttonObjects = [
     {
         text: 'AC',
@@ -91,6 +93,10 @@ function createButton(buttonData) {
     button.textContent = text;
     if (className) button.className = className;
     if (codes) button.setAttribute('data-keycodes', codes);
+    button.setAttribute(
+        'style',
+        `--rnd-tns-x: ${randomTranslate()}; --rnd-tns-y: ${randomTranslate()};`
+    );
     return button;
 }
 
