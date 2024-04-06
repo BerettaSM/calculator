@@ -1,5 +1,4 @@
 import calculator from './calculator.js';
-import { mapMouseXOffset, mapMouseYOffset } from './utils.js';
 
 import {
     buttons,
@@ -8,8 +7,6 @@ import {
     operation,
     frame,
     display,
-    xCenter,
-    yCenter,
 } from './constants.js';
 
 export function onKeyDown(event) {
@@ -44,17 +41,9 @@ function updateDisplay() {
     operation.textContent = calculator.operation;
 }
 
-export function calculateFramePosition(event) {
-    const { clientX, clientY } = event;
-    const offsetX = mapMouseXOffset(xCenter - clientX);
-    const offsetY = mapMouseYOffset(yCenter - clientY);
-    frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-}
-
 function triggerVanish() {
-    display.textContent = 'WHAT HAVE YOU DONE?!'
+    display.textContent = 'WHAT HAVE YOU DONE?!';
     buttons.removeEventListener('click', onClick);
-    window.removeEventListener('mousemove', calculateFramePosition);
     frame.addEventListener('animationend', () => frame.remove());
     setTimeout(() => {
         frame.style.animation = `vanish 0.7s 1 ease-in-out forwards`;
