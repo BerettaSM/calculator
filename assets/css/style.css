@@ -76,31 +76,21 @@ h6 {
         135deg,
         var(--gradient-color-2),
         var(--gradient-color-1),
-        var(--gradient-color-2) 
+        var(--gradient-color-2)
     );
-    animation: rgb-rotation 60s ease-in-out infinite;
-}
-
-@keyframes rgb-rotation {
-    from {
-        filter: hue-rotate(0deg);
-    }
-    to {
-        filter: hue-rotate(360deg);
-    }
 }
 
 .frame {
     background-color: slategray;
     border-radius: 50px;
     border: 2px solid silver;
-    box-shadow: 3px 3px 6px rgb(0 0 0 / .3), 15px 12px 10px rgb(0 0 0 / .15);
+    box-shadow: 3px 3px 6px rgb(0 0 0 / 0.3), 15px 12px 10px rgb(0 0 0 / 0.15);
     outline: 2px solid var(--frame-outline-color);
     padding: 2px;
     min-width: 340px;
     opacity: 1;
     z-index: 1;
-    transition: transform .15s ease;
+    transition: transform 0.15s ease;
     animation: frame-popin 0.75s 1 ease-in;
 }
 
@@ -136,7 +126,7 @@ h6 {
     position: relative;
     opacity: 0;
     animation: calculator-popin 0.75s 1 0.75s ease-in forwards;
-    transition: transform .15s ease;
+    transition: transform 0.15s ease;
 }
 
 @keyframes calculator-popin {
@@ -286,7 +276,7 @@ h6 {
     min-width: 100%;
     position: relative;
     overflow: hidden;
-    transition: border-color .3s ease;
+    transition: border-color 0.3s ease;
     opacity: 0;
     animation: button-slide-in 1.2s 1 1.5s ease-in-out forwards;
 }
@@ -300,7 +290,7 @@ h6 {
         opacity: 0;
     }
     100% {
-        transform: translate(0,0);
+        transform: translate(0, 0);
         opacity: 1;
     }
 }
@@ -313,7 +303,7 @@ h6 {
     height: 100%;
     width: 100%;
     transform: scale(1.1);
-    background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3));
     z-index: 2;
 }
 
@@ -322,7 +312,7 @@ h6 {
 }
 
 .buttons button:focus-visible {
-    outline : none;
+    outline: none;
 }
 
 button.top {
